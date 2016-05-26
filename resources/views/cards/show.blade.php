@@ -7,12 +7,22 @@
             <ul class="list-group">
                 @foreach($card->notes as $note)
                     <li class="list-group-item">
-                        <a href="/notes/{{$note->id}}/edit">{{$note->description}}</a>
+                        {{$note->description}}
+                        <a href="/notes/{{$note->id}}/edit" class="pull-right">{{$note->user->name}}</a>
                     </li>
                 @endforeach
             </ul>
             <hr/>
             <h1>Add a New Note</h1>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <form method="POST" action="/cards/{{$card->id}}/notes">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -22,6 +32,7 @@
                 </div>
                 <button type="submit" class="btn btn-default">Add Note</button>
             </form>
+            {{var_dump($errors)}}
         </div>
     </div>
 

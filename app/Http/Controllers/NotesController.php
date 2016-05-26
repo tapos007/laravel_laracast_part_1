@@ -12,8 +12,12 @@ class NotesController extends Controller
 {
     public function store(Request $request, Card $card)
     {
+        $this->validate($request, [
+            'description' => 'required',
+        ]);
         $notes = new Note();
         $notes->description = $request->description;
+        $notes->user_id = 1;
         $card->notes()->save($notes);
         return back();
     }

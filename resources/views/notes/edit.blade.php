@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <textarea class="form-control" name="description" rows="3">{{$note->description}}</textarea>
                 </div>
-                <button type="submit" class="btn btn-default">Add Note</button>
+                <button type="submit" class="btn btn-primary">Update Note</button>
             </form>
         </div>
     </div>
